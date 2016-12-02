@@ -35,6 +35,8 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.dom4j.Document;
 import org.dom4j.io.SAXReader;
 
+import ar.com.sipymes.entidades.Autenticacion;
+
 public class AutenticarWS {
 	
 	public Autenticacion obtenerWSAA() {
@@ -45,12 +47,10 @@ public class AutenticarWS {
 		// DN de destino		
 		String dstDN = "cn=wsaahomo,o=afip,c=ar,serialNumber=CUIT 33693450239";
 
-		
 		// Obtengo una direccion como esta: C:\jboss-as-7.1.1.Final\standalone 
 		ServletContext context= ServletActionContext.getServletContext();
-		String p12File = context.getRealPath("/WEB-INF/classes/afip/homo") + "/";
-		
-		
+		String p12File = context.getRealPath("/WEB-INF/classes/afip/homo") + "\\cert.p12";
+
 		// Certificado final
 		//String p12File = "C:/temp/certs/afip/homo/cert.p12";
 
@@ -64,7 +64,7 @@ public class AutenticarWS {
 		System.setProperty("http.proxyPort", "8080");
 		System.setProperty("http.proxyUser", "ajcelia");
 		System.setProperty("http.proxyPassword", "Bichos17+");
-		
+
 		// Create LoginTicketRequest_xml_cms
 		byte [] loginTicketRequestXmlCms = this.createCms(p12File, p12pass, signer, dstDN);
 
@@ -72,9 +72,7 @@ public class AutenticarWS {
 		String loginTicketResponse = "";
 
 		try {
-			
 			loginTicketResponse = this.invokeWsaa(loginTicketRequestXmlCms, endpoint);
-
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -147,7 +145,7 @@ public class AutenticarWS {
 
 		// Create XML Message
 		loginTicketRequestXml = createLoginTicketRequest(SignerDN, dstDN);
-		
+
 		// Create CMS Message
 		try {
 			// Create a new empty CMS Message
@@ -170,10 +168,10 @@ public class AutenticarWS {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
-	
+
 		return (asn1_cms);
 	}
-	
+
 	/**
 	 * 
 	 * @param SignerDN 
@@ -193,12 +191,11 @@ public class AutenticarWS {
 		GregorianCalendar expirationTime = new GregorianCalendar();
 		String UniqueId = new Long(genDate.getTime() / 1000).toString();
 		expirationTime.setTime(new Date(genDate.getTime() + TicketTime));
-		
-		
+
 		//Convierto las fechas al formato necesario 
 		XMLGregorianCalendar XMLGenerationTime = null;
 		XMLGregorianCalendar XMLExpirationTime = null;
-		
+
 		try {
 			XMLGenerationTime = DatatypeFactory.newInstance().newXMLGregorianCalendar(generationTime);
 			XMLExpirationTime = DatatypeFactory.newInstance().newXMLGregorianCalendar(expirationTime);

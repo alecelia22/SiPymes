@@ -1,4 +1,4 @@
-package ar.com.sipymes.ws;
+package ar.com.sipymes.entidades;
 
 public class Autenticacion {
 

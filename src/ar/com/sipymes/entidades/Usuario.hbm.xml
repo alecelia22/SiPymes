@@ -5,7 +5,7 @@
 
 <hibernate-mapping>
 
-    <class name="ar.com.facu.entidades.Usuario" table="Usuario">
+    <class name="ar.com.sipymes.entidades.Usuario" table="Usuario">
 
         <id name="id" column="id">
             <generator class="native" />
@@ -26,7 +26,7 @@
         <property name="password">
             <column name="password" not-null="true" length="16" />
         </property>
-        
+
         <property name="rol">
             <column name="rol" not-null="true" length="10" />
         </property>

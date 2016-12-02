@@ -1,4 +1,4 @@
-CREATE TABLE `facu_schema`.`usuario` (
+CREATE TABLE `sipymes_schema`.`usuario` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
   `apellido` VARCHAR(45) NOT NULL,

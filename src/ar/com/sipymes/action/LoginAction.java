@@ -10,8 +10,6 @@ import org.hibernate.criterion.SimpleExpression;
 
 import ar.com.sipymes.entidades.Usuario;
 import ar.com.sipymes.entidades.util.HibernateUtil;
-import ar.com.sipymes.ws.Autenticacion;
-import ar.com.sipymes.ws.AutenticarWS;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -32,24 +30,12 @@ public class LoginAction extends ActionSupport {
 	 * Validar usuarios.
 	 */
 	public String authenticate() {
-		try {
-			AutenticarWS autenticarWS = new AutenticarWS();
-			Autenticacion autenticacion = new Autenticacion();
-			
-			autenticacion = autenticarWS.obtenerWSAA();
-
-			System.out.println("Token: " + autenticacion.getToken());
-			System.out.println("Sign : " + autenticacion.getSign());
-		} catch (Exception e) {
-			System.out.println("ERROR======: " + e.getMessage());
-		}
-
 		// si ya estaba logueado devuelvo el success
 		Usuario usuarioSession = (Usuario) session.get("usuario");
 		if (usuarioSession != null) {
 			return SUCCESS;
 		}
-		
+
 		//Creo una nueva session de BBDD 
 		Session sessionBBDD = HibernateUtil.getSession();
 		// Criterio de busqueda

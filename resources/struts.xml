@@ -26,29 +26,29 @@
 
 		<!-- Salida global, en caso de un acceso sin login -->
 		<global-results>
-			<result name="loginRedirect" type="redirect">Facu/Error.jsp</result> <!-- login.action -->
+			<result name="loginRedirect" type="redirect">SiPymes/Error.jsp</result> <!-- login.action -->
         </global-results>
 
 		<!-- Logins -->
 		<action name="login" method="authenticate" class="ar.com.sipymes.action.LoginAction">
-			<result name="success">Facu/index.html</result>
+			<result name="success">SiPymes/Principal.jsp</result>
 			<result name="error">Login.jsp</result>
 		</action>
 		<action name="cargarMenu" method="cargarMenu" class="ar.com.sipymes.action.LoginAction">
-			<result name="success">Facu/Menu.jsp</result>
+			<result name="success">SiPymes/Menu.jsp</result>
 		</action>
 		<action name="logout" method="logout" class="ar.com.sipymes.action.LoginAction">
 			<result name="success">Login.jsp</result>
 		</action>
 
 
- 		<!-- **************************************************** CONFIGURACION **************************************************** -->
+ 		<!-- **************************************************** FACTURACION **************************************************** -->
 
-					<!-- ARANCELES -->
-	 		<!-- Listado de Empleadores  -->
-<!-- 		<action name="listarAranceles" method="listarAranceles" class="ar.com.facu.action.ArancelesAction"> -->
-<!-- 			<result name="success">Facu/ListarAranceles.jsp</result> -->
-<!-- 		</action> -->
+				<!-- FACTURAR -->
+			<!-- Inicio el proceso -->
+	 		<action name="iniciarCargarFactura" method="iniciarCargarFactura" class="ar.com.sipymes.action.FacturarAction">
+				<result name="success">SiPymes/Facturar.jsp</result>
+			</action>
 	 		<!-- Cargo los datos iniciales para la carga/modificacion de un arancel -->
 <!-- 		<action name="crearActualizarArancel" method="crearActualizarArancel" class="ar.com.facu.action.ArancelesAction"> -->
 <!-- 			<result name="success">Arancel.jsp</result> -->

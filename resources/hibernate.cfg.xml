@@ -11,7 +11,7 @@
  
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost/facu_schema</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost/sipymes_schema</property>
         <property name="hibernate.connection.username">ale</property>
         <property name="hibernate.connection.password">123456</property>
         <property name="transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
@@ -36,9 +36,7 @@
         <!-- # mapping files with external dependencies # -->
         <!-- ############################################ -->
 
-		<mapping resource="ar/com/facu/entidades/Arancel.hbm.xml" />
-       	<mapping resource="ar/com/facu/entidades/Concepto.hbm.xml" />
-        <mapping resource="ar/com/facu/entidades/Usuario.hbm.xml" />
+        <mapping resource="ar/com/sipymes/entidades/Usuario.hbm.xml" />
  
     </session-factory>
 </hibernate-configuration>

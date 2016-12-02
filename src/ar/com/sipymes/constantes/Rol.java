@@ -1,4 +1,4 @@
-package ar.com.sipymes.enumerations;
+package ar.com.sipymes.constantes;
 
 public enum Rol {
 	ADMIN, OPERADOR;
