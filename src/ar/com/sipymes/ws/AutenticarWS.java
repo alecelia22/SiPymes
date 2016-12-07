@@ -49,10 +49,8 @@ public class AutenticarWS {
 
 		// Obtengo una direccion como esta: C:\jboss-as-7.1.1.Final\standalone 
 		ServletContext context= ServletActionContext.getServletContext();
+		// Cargo la carpeta donde tengo el certificado
 		String p12File = context.getRealPath("/WEB-INF/classes/afip/homo") + "\\cert.p12";
-
-		// Certificado final
-		//String p12File = "C:/temp/certs/afip/homo/cert.p12";
 
 		// Firmante del certificado
 		String signer = "signerName";
@@ -63,7 +61,7 @@ public class AutenticarWS {
 		System.setProperty("http.proxyHost", "proxylatam.indra.es");
 		System.setProperty("http.proxyPort", "8080");
 		System.setProperty("http.proxyUser", "ajcelia");
-		System.setProperty("http.proxyPassword", "Bichos17+");
+		System.setProperty("http.proxyPassword", "Bichos18+");
 
 		// Create LoginTicketRequest_xml_cms
 		byte [] loginTicketRequestXmlCms = this.createCms(p12File, p12pass, signer, dstDN);

@@ -15,6 +15,14 @@ public class Item {
 	private BigDecimal importeBonificacion;
 	private BigDecimal subTotal;
 
+	public Byte getTipoItem() {
+		return tipoItem;
+	}
+
+	public void setTipoItem(Byte tipoItem) {
+		this.tipoItem = tipoItem;
+	}
+
 	public Long getCodigo() {
 		return codigo;
 	}

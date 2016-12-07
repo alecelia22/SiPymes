@@ -1,14 +1,19 @@
 package ar.com.sipymes.action;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import ar.com.sipymes.constantes.TipoComprobante;
+import ar.com.sipymes.constantes.TipoConcepto;
 import ar.com.sipymes.constantes.TipoDocumento;
 import ar.com.sipymes.entidades.Autenticacion;
 import ar.com.sipymes.entidades.Factura;
 import ar.com.sipymes.entidades.Facturado;
 import ar.com.sipymes.entidades.Facturador;
 import ar.com.sipymes.entidades.Item;
+import ar.com.sipymes.ws.AfipWS;
 import ar.com.sipymes.ws.AutenticarWS;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -69,10 +74,27 @@ public class FacturarAction extends ActionSupport {
 		Item item1 = new Item();
 		item1.setCodigo(0L);
 		item1.setDescripcion("Buceo");
-
+		item1.setTipoItem(TipoConcepto.SERVICIOS);
+		item1.setCantidad(BigDecimal.ONE);
+		item1.setUnidadMedida(new Byte("1"));
+		item1.setPrecioUnitario(new BigDecimal(2500.00));
+		item1.setBonficacion(BigDecimal.ZERO);
+		item1.setImporteBonificacion(BigDecimal.ZERO);
+		item1.setSubTotal(new BigDecimal(2500.00));		
+		List<Item> items = new ArrayList<Item>();
+		items.add(item1);
+		factura.setDetalle(items);
+		
+		factura.setSubtotal(new BigDecimal(2500.00));
+		factura.setOtrosImpuestos(BigDecimal.ZERO);
+		factura.setTotal(new BigDecimal(2500.00));
 		
 		
-		//"https://wswhomo.afip.gov.ar/wsfev1/service.asmx?WSDL";
+		AfipWS afip = new AfipWS();
+		afip.obtenerCAE(factura, autenticacion);
+		
+		
+		//
 		
 		
 		return SUCCESS;
